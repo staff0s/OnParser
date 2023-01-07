@@ -3,15 +3,11 @@ from bs4 import BeautifulSoup
 
 search = []
 skip = 0
-print(" ┌─────────────────────────────────────────────────────┐")
-print(" │                 • OpenNet Parser •                  │")
-print(" ├─────────────────────────┬───────────────────────────┤")
-print(" │  y - To start searching │ all - Display of all news │")
-print(" └─────────────────────────┴───────────────────────────┘")
-print("\n [!] Search Keywords:")
+print("OpenNet parser v0.2 | all - display all news | y - start")
+print("Search Keyword:")
 
 while True:
-	searchInput=input("  & ")
+	searchInput=input("> ")
 	if searchInput == 'y':
 		break
 	elif searchInput == ('all'):
@@ -21,10 +17,7 @@ while True:
 		search.append(searchInput)
 			
 print()
-print(" ┌──────────┬──────────┬───────────────────────────────────────────────┬───────────────────────────────────┐")
-print(" │   Date   │ Srh. key.│                     Link                      │                News               │")
-print(" └──────────┴──────────┴───────────────────────────────────────────────┴───────────────────────────────────┘")
-
+print("     Date     Srh. key.                      Link                                       News                \n")
 while True:
 	try:
 		url = "https://opennet.ru/opennews/index.shtml?skip={}&news=open&template=0".format(str(skip))
@@ -37,7 +30,7 @@ while True:
 		for i in range(0 , len(news)): 
 			for keyword in search:
 				if keyword in news[i].text:	
-					print("░ "+dates[i].text,end=' ')
+					print("* "+dates[i].text,end=' ')
 					print(keyword.center(10),end=' ')
 					print("https://opennet.ru"+news[i].get('href'),end='  ')
 					print(news[i].text)
@@ -45,7 +38,5 @@ while True:
 		skip += 15
 		
 	except KeyboardInterrupt:
-		print("\n\n [!]  Operation terminated by user\n")
+		print("\n !Quit")
 		break
-        
-input(" [*] Enter - exit")
