@@ -3,11 +3,10 @@ from bs4 import BeautifulSoup
 
 search = []
 skip = 0
-print("OpenNet parser v0.2 | all - display all news | y - start")
-print("Search Keyword:")
+print("OpenNet parser v0.2 | all - display all news | y - start\n")
 
 while True:
-	searchInput=input("> ")
+	searchInput=input("Search Keyword: ")
 	if searchInput == 'y':
 		break
 	elif searchInput == ('all'):
@@ -16,8 +15,7 @@ while True:
 	else:
 		search.append(searchInput)
 			
-print()
-print("     Date     Srh. key.                      Link                                       News                \n")
+print("\n     Date     Srh. key.                      Link                                       News                \n")
 while True:
 	try:
 		url = "https://opennet.ru/opennews/index.shtml?skip={}&news=open&template=0".format(str(skip))
@@ -38,5 +36,4 @@ while True:
 		skip += 15
 		
 	except KeyboardInterrupt:
-		print("\n !Quit")
 		break
